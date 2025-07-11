@@ -37,3 +37,7 @@ Semua perubahan penting pada script ini akan didokumentasikan di sini.
 - Melakukan zip pada setiap subfolder (`01`, `02`, dst.) dalam folder `Done`
 - Nama file zip mengikuti format: `H-002{YY}{MM}{DD}.zip`
 - Output zip disimpan di folder `BoBo-zip`
+
+---
+
+Note: v1.3.0 menjadi v.1.0.0
