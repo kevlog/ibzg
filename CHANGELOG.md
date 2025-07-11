@@ -48,3 +48,8 @@ Semua perubahan penting pada script ini akan didokumentasikan di sini.
 ---
 
 Note: v1.3.0 menjadi v.1.0.0
+
+## [1.1.0]
+
+- Menambahkan semua file ATM ke dalam folder Masking - Ready to Upload, sebelumnya hanya file Invoice ATM saja
+- Mengecualikan file Invoice ATM ke dalam folder Done agar tidak masuk ke dalam hasil 
