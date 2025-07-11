@@ -2,6 +2,13 @@
 
 Semua perubahan penting pada script ini akan didokumentasikan di sini.
 
+## [1.1.0](https://github.com/kevlog/ibzg/compare/v1.0.0...v1.1.0) (2025-07-11)
+
+
+### Features
+
+* add all report masking to 'Masking - Ready to Upload' folder and exclude Invoice ATM to Done Folder ([98f43a9](https://github.com/kevlog/ibzg/commit/98f43a9ebea1a9f9cad71f98839115eda18f0145))
+
 ## 1.0.0 (2025-07-11)
 
 
