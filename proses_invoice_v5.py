@@ -7,19 +7,22 @@ def cari_dan_salin_file(source_folder):
     target_folder = os.path.join(os.path.dirname(source_folder), f"Invoice ATU {folder_nama}")
     os.makedirs(target_folder, exist_ok=True)
     file_sesuai = False
+
+    print(f"\n[INFO] ⚙️ Proses menyalin file Invoice ATU dari folder: {source_folder}")
     for root, _, files in os.walk(source_folder):
         for file in files:
             if f"{kode_member}-Invoice-Data-ATU Platform" in file and file.endswith(".txt"):
                 full_path = os.path.join(root, file)
                 shutil.copy2(full_path, target_folder)
                 file_sesuai = True
-                print(f"[INFO] 📤 Disalin ke Invoice ATU: {full_path}")
-        
+                print(f"[INFO] 🗃️ {full_path}")    
+
     if not file_sesuai:
         print(f"[ERR]  ❌ File yang tersedia tidak sesuai kode member yang diinputkan, silahkan cek kembali.")
         return exit(0)
     else:
-        print(f"\n[INFO] ✅ Semua file ATU sudah disalin ke: {target_folder}")
+        print(f"[INFO] 📤 Berhasil menyalin ke folder Invoice ATU {folder_nama}")
+        print(f"\n[INFO] ✅ Semua file Invoice ATU sudah disalin ke folder: {target_folder}")
 
     return target_folder
 
@@ -27,7 +30,7 @@ def kloning_dan_ganti_file(source_folder, encrypted_folder, kode_member):
     parent_dir = os.path.dirname(source_folder)
     folder_nama = os.path.basename(source_folder.rstrip("\\/"))
     done_folder = os.path.join(parent_dir, f"{folder_nama} Done")
-    masking_folder = os.path.join(parent_dir, "Masking")
+    masking_folder = os.path.join(parent_dir, "Masking - Ready to Upload")
 
     # Hapus jika sudah ada
     if os.path.exists(done_folder):
@@ -55,13 +58,15 @@ def kloning_dan_ganti_file(source_folder, encrypted_folder, kode_member):
                         dst_masking_file = os.path.join(masking_folder, f"{base}_{counter}{ext}")
                         counter += 1
                 shutil.copy2(src_file, dst_masking_file)
-                print(f"[INFO] ➡️ Invoice Masking dipindah ke folder Masking: {dst_masking_file}")
+                print(f"\n[INFO] ➡️ Invoice Masking dipindah ke folder Masking: {dst_masking_file}")
             else:
                 if f"{kode_member}" in file and file.endswith(".txt"):
                     shutil.copy2(src_file, os.path.join(target_root, file))
+                    print(f"[INFO] ➡️ Report lain juga dipindah ke folder: {target_root}")
 
-    print(f"[INFO] \n✅ Folder dikloning ke: {done_folder}")
-    print(f"[INFO] ✅ File Invoice Masking disendirikan ke folder: {masking_folder}\n")
+
+    print(f"\n[INFO] ⚒️ Folder dikloning ke: {done_folder}")
+    print(f"[INFO] 📃 File Invoice Masking disendirikan ke folder: {masking_folder}\n")
 
     # Ganti file ATU dengan versi terenkripsi
     encrypted_files = {
@@ -87,7 +92,7 @@ def zip_subfolders(folder_done_path, bulan_input, tahun_input):
     tahun_short = tahun[-2:]
 
     parent_dir = os.path.dirname(folder_done_path)
-    output_zip_dir = os.path.join(parent_dir, "BoBo-zip")
+    output_zip_dir = os.path.join(parent_dir, "BoBo-zip - Ready to Upload")
     os.makedirs(output_zip_dir, exist_ok=True)
 
     for subfolder in os.listdir(folder_done_path):
@@ -109,7 +114,7 @@ def zip_subfolders(folder_done_path, bulan_input, tahun_input):
     print(f"\n[INFO] 📂 Semua ZIP disimpan di folder: {output_zip_dir}")
 
 if __name__ == "__main__":
-    kode_member = input("💳 Masukkan 3 digit kode bank (contoh: 002, 008, 200, 009): ").strip().zfill(3)
+    kode_member = input("🏦 Masukkan 3 digit kode bank (contoh: 002, 008, 200, 009): ").strip().zfill(3)
     folder_sumber = input("📁 Masukkan path folder sumber (misalnya: C:\\Users\\ASUS-TUF\\Documents\\Maret 2025): ").strip()
     folder_sumber = os.path.abspath(folder_sumber)
 
@@ -119,7 +124,8 @@ if __name__ == "__main__":
 
     folder_enkripsi = cari_dan_salin_file(folder_sumber)
 
-    input("\n[WARN] 🔐 Lakukan proses enkripsi terlebih dahulu di folder Invoice ATU.\nTekan ENTER jika sudah selesai...")
+    print(f"\n[WARN] 🔐 Lakukan proses enkripsi terlebih dahulu di folder Invoice ATU!")
+    input("[WARN] ⚠️ Tekan ENTER jika sudah selesai mengenkripsi Invoice ATU. ⚠️")
 
     folder_done = kloning_dan_ganti_file(folder_sumber, folder_enkripsi, kode_member)
 
@@ -129,4 +135,4 @@ if __name__ == "__main__":
 
     zip_subfolders(folder_done, bulan_input, tahun_input)
 
-    print("\n[INFO] 🎉 Proses selesai! Semua file siap digunakan.")
+    input("\n[INFO] 🎉 Proses selesai! Tinggal upload ke BoBo.")
