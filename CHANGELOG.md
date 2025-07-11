@@ -2,6 +2,13 @@
 
 Semua perubahan penting pada script ini akan didokumentasikan di sini.
 
+## [1.1.1](https://github.com/kevlog/ibzg/compare/v1.1.0...v1.1.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* **log:** correct log message formatting when cloning files processing ([9adf1cd](https://github.com/kevlog/ibzg/commit/9adf1cdff46661e5d8651a5ae45bae2deb38568e))
+
 ## [1.1.0](https://github.com/kevlog/ibzg/compare/v1.0.0...v1.1.0) (2025-07-11)
 
 
@@ -52,4 +59,4 @@ Note: v1.3.0 menjadi v.1.0.0
 ## [1.1.0]
 
 - Menambahkan semua file ATM ke dalam folder Masking - Ready to Upload, sebelumnya hanya file Invoice ATM saja
-- Mengecualikan file Invoice ATM ke dalam folder Done agar tidak masuk ke dalam hasil 
+- Mengecualikan file Invoice ATM ke dalam folder Done agar tidak masuk ke dalam hasil
